@@ -4,15 +4,22 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
-<div th:replace="shared/header :: header-css"/>
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-<div th:replace="shared/header :: header('home')"/>
-<p> Działa :D </p>
+jest i panel admina
 
-<div th:replace="shared/footer :: footer"></div>
+<form action="login" method="post">
+    <input type="text" th:path="name"/>
+    <input type="text" th:path="passwd"/>
+    <input type="submit" th:path="subm" value="Apply"/>
+
+
+
+
+
+</form>
 </body>
 </html>
