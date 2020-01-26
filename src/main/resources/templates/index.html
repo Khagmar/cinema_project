@@ -13,6 +13,45 @@
 <div th:replace="shared/header :: header('home')"/>
 <p> Działa :D </p>
 
+<div th:if="${newsListPage.hasContent() eq false}">
+    <span>Brak artykułów w bazie!</span>
+</div>
+
+
+<div th:if="${newsListPage.hasContent() eq true}">
+
+
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+
+            <th>ID</th>
+            <th>Marka</th>
+            <th>Model</th>
+
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="news : ${newsListPage.content}">
+
+
+            <td><span>[[${news.id}]]</span></td>
+            <td><span>[[${news.title}]]</span></td>
+            <td><span>[[${news.article}]]</span></td>
+
+        </tr>
+
+        </tbody>
+    </table>
+
+    stronicowanie
+
+</div>
+
+
+
 <div th:replace="shared/footer :: footer"></div>
 </body>
 </html>

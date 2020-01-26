@@ -1,16 +1,24 @@
 package pl.cinema.cinema_project.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import pl.cinema.cinema_project.services.NewsService;
+
+import java.awt.print.Pageable;
 
 @Controller
 public class main_controller {
+    @Autowired
+    NewsService newsService;
 
-    @GetMapping(value = "/")
-    public String showIndex(Model model) {
-        model.addAttribute("name", "Work");
+    @RequestMapping(value = "/", method = {RequestMethod.GET, RequestMethod.POST})
+    public String showIndex(Model model, Pageable pageable) {
+        model.addAttribute("newsListPage", newsService.getALLNews((org.springframework.data.domain.Pageable) pageable));
         return "index";
     }
 
