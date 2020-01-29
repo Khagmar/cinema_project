@@ -19,6 +19,9 @@ public class RepositioriesInitializer {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private Price_listRepository price_listRepository;
+
     //@Autowired
     //private PasswordEncoder passwordEncoder;
 
@@ -47,6 +50,11 @@ public class RepositioriesInitializer {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+            }
+
+            if(price_listRepository.findAll().isEmpty() == true){
+                Price_list normal = price_listRepository.save(new Price_list("normalny",20));
+                Price_list reduced = price_listRepository.save(new Price_list("ulgowy",16));
             }
         };
     }

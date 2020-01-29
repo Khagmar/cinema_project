@@ -4,8 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import pl.cinema.cinema_project.controllers.commands.NewsFilter;
 import pl.cinema.cinema_project.models.News;
 import pl.cinema.cinema_project.repositories.NewsRepository;
+
+import java.util.Optional;
 
 
 @Service
@@ -15,8 +18,22 @@ public class NewsServiceImpl implements NewsService {
     private NewsRepository newsRepository;
 
     @Override
-    public Page<News> getALLNews(Pageable pageable) {
+    public Page<News> getALLNews(NewsFilter filter, Pageable pageable) {
+        Page page;
 
-        return newsRepository.findAll(pageable);
+        if (filter.isEmpty()) {
+            page = newsRepository.findAll(pageable);
+        } else {
+            page = newsRepository.findALLNewsUsingFilter(filter.getPhraseLIKE(), pageable );
+        }
+
+        return page;
+    }
+
+    @Override
+    public News getNews(int id) {
+        News n = newsRepository.findById(id);
+
+        return n;
     }
 }

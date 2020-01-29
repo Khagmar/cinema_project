@@ -12,6 +12,41 @@
 <body>
 <div th:replace="shared/header :: header('home')"/>
 
+<div th:if="${price_list.hasContent() eq false}">
+    <span>Brak artykułów w bazie!</span>
+</div>
+
+
+<div th:if="${price_list.hasContent() eq true}">
+
+
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th></th>
+            <th>Rodzaj</th>
+            <th>Cena</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="pl : ${price_list.content}">
+
+
+
+
+            <td><span><b><h2>[[${pl.id}]]</h2></b></span></td>
+               <td> <span>[[${pl.name}]]</span></td>
+               <td> <span>[[${pl.price}]]</span></td>
+
+        </tr>
+
+        </tbody>
+    </table>
+
+
+
+</div>
 
 
 <div th:replace="shared/footer :: footer"></div>

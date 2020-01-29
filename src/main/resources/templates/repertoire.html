@@ -14,6 +14,35 @@
 <h2>Kino Siedlce</h2>
 
 
+<div th:if="${reservations.hasContent() eq false}">
+    <span>Brak filmów!</span>
+</div>
+
+
+<div th:if="${reservations.hasContent() eq true}">
+
+
+
+    <table class="table table-striped">
+        <thead>
+
+        </thead>
+        <tbody>
+
+
+        <tr th:each="reservation : ${reservations.content}">
+
+
+
+
+            <td><span><b><h2>[[${reservation.id}]]</h2></b></span><br/>
+                <span></span></td>
+
+        </tr>
+
+        </tbody>
+    </table>
+
 <div th:replace="shared/footer :: footer"></div>
 </body>
 </html>
