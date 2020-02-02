@@ -34,10 +34,13 @@ public class Reservation {
 
     private int rows;
 
-    public Reservation(MovieToRoom movieToRoom, Price_list price_list, int seat, int rows) {
+    private String email;
+
+    public Reservation(MovieToRoom movieToRoom, Price_list price_list, int seat, int rows, String email) {
         this.movieToRoom = movieToRoom;
         this.price_list = price_list;
         this.seat = seat;
         this.rows = rows;
+        this.email = email;
     }
 }

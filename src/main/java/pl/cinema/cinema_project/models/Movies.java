@@ -33,6 +33,8 @@ import java.util.stream.Stream;
     private int month;
     private int day;
 
+
+
     @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
     private Set<MovieToRoom> movies;
 
@@ -43,7 +45,7 @@ import java.util.stream.Stream;
         this.year = year;
         this.month = month;
         this.day = day;
-        this.movies = Stream.of(movies).collect(Collectors.toSet());
-        this.movies.forEach(x->x.setMovie(this));
+        /*this.movies = Stream.of(movies).collect(Collectors.toSet());
+        this.movies.forEach(x->x.setMovie(this));*/
     }
 }

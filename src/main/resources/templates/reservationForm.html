@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pl"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<div th:replace="shared/header :: header-css"/>
+<head>
+    <meta charset="UTF-8">
+    <title>Rezerwacja</title>
+</head>
+<body>
+<div th:replace="shared/header :: header('home')"/>
+
+<form th:method="POST" th:object="${res}" th:action="@{/repertuarForm}">
+    <fieldset>
+        <h1>Rezerwacja</h1>
+
+        <div class="form-group">
+            <label for="email" class="bmd-label-floating">Email:</label>
+            <input id="email" type="email" name="email" th:value="*{email}"
+                   class="form-control" th:classappend="${#fields.hasErrors('email')}?'is-invalid'"
+                   required="true" autofocus="true"/>
+
+            <div class="error text-danger" th:if="${#fields.hasErrors('email')}">
+                <span th:each="err : ${#fields.errors('email')}" th:text="${err}"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="rows" class="bmd-label-floating">Rząd</label>
+            <input id="rows" type="number" th:field="*{rows}"
+                   class="form-control" th:classappend="${#fields.hasErrors('rows')}?'is-invalid'"
+                   required="true"/>
+
+            <div class="error text-danger" th:if="${#fields.hasErrors('rows')}">
+                <p th:each="err : ${#fields.errors('rows')}" th:text="${err}"></p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="seat" class="bmd-label-floating">Miejsce:</label>
+            <input id="seat" type="number" th:field="*{seat}"
+                   class="form-control" th:classappend="${#fields.hasErrors('seat')}?'is-invalid'"
+                   required="true"/>
+            <div class="error text-danger" th:if="${#fields.hasErrors('seat')}">
+                <p th:each="err : ${#fields.errors('seat')}" th:text="${err}"></p>
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            <input id="movieToRoom" type="number" th:field="*{movieToRoom.id}" th:text="${reservation.id}"
+                   class="form-control" th:classappend="${#fields.hasErrors('movieToRoom')}?'is-invalid'"
+                   required="true"/>
+            <div class="error text-danger" th:if="${#fields.hasErrors('movieToRoom')}">
+                <p th:each="err : ${#fields.errors('movieToRoom')}" th:text="${err}"></p>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <select th:field="*{price_list.id}" class="form-control"
+                    th:classappend="${#fields.hasErrors('price_list.id')}?'is-invalid'">
+                <option th:value="${normal.id}" th:text="${normal.name}"/>
+                <option th:value="${reduced.id}" th:text=" ${reduced.name}"
+                />
+            </select>
+            <div class="error text-danger" th:if="${#fields.hasErrors('price_list.id')}">
+                <p th:each="err : ${#fields.errors('price_list.id')}" th:text="${err}"></p>
+            </div>
+        </div>
+
+
+
+        <button type="submit" class="btn btn-primary btn-raised">Zarezerwuj</button>
+    </fieldset>
+</form>
+
+<a class="btn btn-success" href="/repertuar">Wstecz</a>
+
+
+</div>
+
+
+
+<div th:replace="shared/footer :: footer"></div>
+</body>
+</html>

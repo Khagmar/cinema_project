@@ -15,4 +15,6 @@ public interface NewsService {
     Page<News> getALLNews(NewsFilter filter,Pageable pageable);
 
     News getNews(int id);
+
+    void saveNews(News news);
 }

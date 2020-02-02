@@ -31,7 +31,7 @@ public class Room {
     @OneToMany(mappedBy = "room", cascade = CascadeType.ALL)
     private Set<MovieToRoom> rooms;
 
-    public Room(int id, int rows, int place, MovieToRoom... rooms) {
+    public Room(int rows, int place, MovieToRoom... rooms) {
         this.id = id;
         this.rows = rows;
         this.place = place;

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pl"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<div th:replace="shared/header :: header-css"/>
+<head>
+    <meta charset="UTF-8">
+    <title>Repertuar</title>
+</head>
+<body>
+<div th:replace="shared/header :: header('home')"/>
+
+<H1>Szczegóły</H1>
+
+
+<h1><b th:text="${reservation.movie.name}"></b></h1><br>
+<b th:text="${reservation.day_rez}">.</b>
+<b th:text="${reservation.month_rez}"></b><br><br>
+
+
+Godzina: <b th:text="${reservation.hour_rez}">:</b>
+<b th:text="${reservation.min_rez}"></b><br><br>
+
+
+Rodzaj: <b th:text="${reservation.movie.type}"></b><br><br>
+
+
+Opis: <b th:text="${reservation.movie.description}"></b><br><br>
+
+
+<a class="btn btn-success" th:href="@{/repertuarForm(id=${reservation.id})}">Rezerwacja biletu</a>
+<a class="btn btn-success" href="/repertuar">Wstecz</a>
+
+
+</div>
+
+
+
+<div th:replace="shared/footer :: footer"></div>
+</body>
+</html>

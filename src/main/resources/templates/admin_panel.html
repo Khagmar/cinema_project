@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pl"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Panel Administratora</title>
+</head>
+<body>
+
+
+<form th:method="POST" th:object="${news}" th:action="@{/newsForm}">
+    <fieldset>
+        <h1>Dodaj news!</h1>
+
+        <div class="form-group">
+            <label for="title" class="bmd-label-floating">Tytuł:</label>
+            <input id="title" type="text" name="title" th:value="*{title}"
+                   class="form-control" th:classappend="${#fields.hasErrors('title')}?'is-invalid'"
+                   required="true" autofocus="true"/>
+
+            <div class="error text-danger" th:if="${#fields.hasErrors('title')}">
+                <span th:each="err : ${#fields.errors('title')}" th:text="${err}"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="article" class="bmd-label-floating">Artykuł</label>
+            <input id="article" type="text" th:field="*{article}"
+                   class="form-control" th:classappend="${#fields.hasErrors('article')}?'is-invalid'"
+                   required="true"/>
+
+            <div class="error text-danger" th:if="${#fields.hasErrors('article')}">
+                <p th:each="err : ${#fields.errors('article')}" th:text="${err}"></p>
+            </div>
+        </div>
+
+
+
+        <button type="submit" class="btn btn-primary btn-raised">Dodaj</button>
+    </fieldset>
+
+</form>
+
+<div th:if="${user.id eq 1}">
+    Admin może więcej :)
+
+
+    <div th:if="${reservations.hasContent() eq false}">
+        <span>Brak Rezerwacji!</span>
+    </div>
+
+
+    <div th:if="${reservations.hasContent() eq true}">
+
+
+
+        <table class="table table-striped">
+            <thead>
+
+            </thead>
+            <tbody>
+
+
+            <tr th:each="reservation : ${reservations.content}">
+
+
+
+
+                <td>
+                    <div>
+                        <span><h2>[[${reservation.movieToRoom.movie.name}]]</h2></span><br>
+                        <span>Typ: [[${reservation.movieToRoom.movie.type}]]</span><br>
+                        <span>Godzina: [[${reservation.movieToRoom.hour_rez}]]:
+                        [[${reservation.movieToRoom.min_rez}]]</span><br>
+                        <span>Data: [[${reservation.movieToRoom.year_rez}]].
+                        [[${reservation.movieToRoom.month_rez}]].
+                        [[${reservation.movieToRoom.day_rez}]]</span><br>
+                        <span>Bilet: [[${reservation.price_list.name}]]</span><br>
+                        <span>Cena: [[${reservation.price_list.price}]]</span><br>
+                        <span>Email: [[${reservation.email}]]</span><br>
+                    </div>
+                </td>
+
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<a class="btn btn-success" href="/login">Wstecz</a>
+
+
+
+
+
+</form>
+</body>
+</html>

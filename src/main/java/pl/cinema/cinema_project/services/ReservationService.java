@@ -7,4 +7,8 @@ import pl.cinema.cinema_project.models.Reservation;
 public interface ReservationService {
 
     Page<Reservation> getALLReservation(Pageable pageable);
+
+    Reservation getReservation(int id);
+
+    void saveReservation(Reservation reservation);
 }

@@ -6,7 +6,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Kontakt</title>
+    <title>Repertuar</title>
     <div th:replace="shared/header :: header-css"/>
 </head>
 <body>
@@ -35,14 +35,20 @@
 
 
 
-            <td><span><b><h2>[[${reservation.id}]]</h2></b></span><br/>
-                <span></span></td>
+            <td>
+                <span><h2><a th:href="@{/repertuar(id=${reservation.id})}">[[${reservation.movie.name}]]</a></h2></span><br>
+                <span>Data seansu: [[${reservation.day_rez}]].[[${reservation.month_rez}]]</span><br>
+
+                <span>Godzina: [[${reservation.hour_rez}]]:[[${reservation.min_rez}]]</span><br><br>
+
+                <span>[[${reservation.movie.type}]]</span><br>
+                <span>[[${reservation.movie.description}]]</span></td>
 
         </tr>
 
         </tbody>
     </table>
-
+</div>
 <div th:replace="shared/footer :: footer"></div>
 </body>
 </html>
